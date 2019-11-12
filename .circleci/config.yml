@@ -4,6 +4,8 @@ jobs:
     working_directory: ~/repo
     docker:
       - image: circleci/node:10.16.0
+      - image: circleci/postgres:latest
+
     steps:
       - checkout
       - restore_cache:

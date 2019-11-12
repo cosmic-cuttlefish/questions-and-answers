@@ -8,7 +8,8 @@ module.exports = {
   getAns: (req, res) => {
     getAnswer(req.params.question_id)
       .then(data => {
-        res.send(data).status(200);
+        let answerList = { rowCount: data.rowCount, rows: data.rows };
+        res.send(answerList).status(200);
       })
       .catch(err => {
         res.sendStatus(500);

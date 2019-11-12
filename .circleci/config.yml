@@ -1,29 +1,37 @@
-version: 2
- jobs:
-   build:
-     docker:
-       - image: circleci/node:10.16.0
-     steps:
-       - checkout
+version: 2.1
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:10.16.0
+      - image: circleci/postgres:latest
 
-       - restore_cache:
+    steps:
+      - checkout
+      - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            dependency-cache-{{ checksum "package-lock.json" }}
             # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
 
-       - run: npm install
+      - run:
+          name: Install npm packages
+          command: npm install
 
       - save_cache:
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ./node_modules
+          key: dependency-cache-{{ checksum "package-lock.json" }}
       # checking if the bulding builds correctly
       - run:
-          name: webpack Build Dev
-          command: npm run build-dev
+          name: webpack Build test
+          command: npm run build-test
 
       # run tests!
       - run:
+          environment:
+            POSTGRES_USER: christianferdinand
+            POSTGRES_DB: qanda
+            POSTGRES_HOST: localhost
+            POSTGRES_PORT: 5432
           name: Jest Test
-          command: npm test -- -u
+          command: npm run test -- -u

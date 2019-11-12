@@ -6,7 +6,8 @@ it("should return a status of 200 when sending a request for questions", () => {
     .get("http://localhost:3000/qa/1/questions")
     .expect("status", 200)
     .expect("jsonTypes", "rows.*", {
-      id: Joi.number()
+      id: Joi.number(),
+      question_body: Joi.string()
     });
 });
 

@@ -5,7 +5,11 @@ jobs:
     docker:
       - image: circleci/node:10.16.0
       - image: circleci/postgres:latest
-
+      environment:
+          POSTGRES_USER: $config_user
+          POSTGRES_DB: $config_db
+          POSTGRES_HOST: $config_host
+          POSTGRES_PORT: $config_port
     steps:
       - checkout
       - restore_cache:
@@ -29,5 +33,4 @@ jobs:
       # run tests!
       - run:
           name: Jest Test
-          context: Questions
           command: npm run test -- -u

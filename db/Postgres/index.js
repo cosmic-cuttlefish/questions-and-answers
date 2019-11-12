@@ -1,11 +1,6 @@
 const Pool = require("pg").Pool;
-const config = require("../../config.json");
+require("dotenv").config();
 
-const pool = new Pool({
-  user: config.user,
-  host: config.host,
-  database: config.db,
-  port: config.port
-});
+const pool = new Pool();
 
 module.exports = pool;

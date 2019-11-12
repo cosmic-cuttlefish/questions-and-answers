@@ -5,11 +5,7 @@ jobs:
     docker:
       - image: circleci/node:10.16.0
       - image: circleci/postgres:latest
-      environment:
-          POSTGRES_USER: christianferdinand
-          POSTGRES_DB: qanda
-          POSTGRES_HOST: localhost
-          POSTGRES_PORT: 5432
+
     steps:
       - checkout
       - restore_cache:
@@ -32,5 +28,10 @@ jobs:
 
       # run tests!
       - run:
+          environment:
+            POSTGRES_USER: christianferdinand
+            POSTGRES_DB: qanda
+            POSTGRES_HOST: localhost
+            POSTGRES_PORT: 5432
           name: Jest Test
           command: npm run test -- -u

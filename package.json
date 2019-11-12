@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "load": "psql postgres -a -f ./db/Postgres/schema.sql && psql qanda -a -f ./db/Postgres/seedDB.sql",
-    "build-dev": "nodemon server/index.js --watch"
+    "build-dev": "nodemon server/index.js --watch",
+    "build-test": "node server/index.js"
   },
   "repository": {
     "type": "git",

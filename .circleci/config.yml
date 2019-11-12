@@ -21,8 +21,8 @@ jobs:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       # checking if the bulding builds correctly
       - run:
-          name: webpack Build Dev
-          command: npm run build-dev
+          name: webpack Build test
+          command: npm run build-test
 
       # run tests!
       - run:

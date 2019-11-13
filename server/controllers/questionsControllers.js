@@ -18,7 +18,7 @@ module.exports = {
   },
   addQues: (req, res) => {
     addQuestion(req.params.product_id, req.body)
-      .then(res.sendStatus(204))
+      .then(res.sendStatus(201))
       .catch(err => {
         res.sendStatus(500);
         console.log(err);

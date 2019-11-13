@@ -5,4 +5,4 @@ WORKDIR /app
 RUN npm install
 
 EXPOSE 8000
-CMD ["npm run", "build-dev"]
+CMD ["node", "server/index.js"]

@@ -4,3 +4,6 @@ lib/
 coverage/
 package-lock.json
 *.log
+.gitignore
+.dockerignore
+Dockerfile

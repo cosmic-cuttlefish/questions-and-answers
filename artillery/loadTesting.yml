@@ -1,0 +1,21 @@
+config:
+  target: "http://localhost:3000"
+  phases:
+    - duration: 60
+      arrivalRate: 10
+      rampTo: 100
+    - duration: 120
+      arrivalRate: 50
+      rampTo: 150
+  defaults:
+    headers:
+      content-type: "application/json"
+  variables:
+    id:
+      - "1"
+scenarios:
+  - name: "Search and buy"
+    flow:
+      - get:
+          url: "/qa/{{id}}/questions"
+      - think: 3

@@ -1,0 +1,20 @@
+version: "3"
+services:
+  web:
+    build: .
+    ports:
+      - "8000:3000"
+    environment:
+      DATABASE_URL: postgres://christianferdinand@db:5432/qanda
+    links:
+      - "db"
+  db:
+    image: "postgres:latest"
+    container_name: "sdc_postgres"
+    environment:
+      POSTGRES_USER: christianferdinand
+      POSTGRES_DB: qanda
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./lib/questions_schema.sql.gz:/docker-entrypoint-initdb.d/1-questions_schema.sql.gz

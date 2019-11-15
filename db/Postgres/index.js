@@ -1,6 +1,5 @@
 const Pool = require("pg").Pool;
-console.log(process.env);
-const config = require("../../config.json") || process.env;
+const config = require("../../config.json" || "");
 
 if (process.env.NODE_ENV === "docker") {
   config.env = config.docker;

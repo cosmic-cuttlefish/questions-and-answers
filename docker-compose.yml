@@ -1,0 +1,24 @@
+version: "3"
+services:
+  db:
+    image: "postgres:latest"
+    container_name: "sdc_postgres"
+
+    environment:
+      POSTGRES_USER: christianferdinand
+      POSTGRES_DB: qanda
+      POSTGRES_HOST: "postgres"
+    ports:
+      - "54320:5432"
+    volumes:
+      - ./lib/questions_schema.sql:/usr/src/app/1-questions_schema.sql
+  web:
+    build: .
+    ports:
+      - "8000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://christianferdinand@db:5432/qanda
+      NODE_ENV: docker
+    restart: on-failure

@@ -1,5 +1,5 @@
 FROM node:10
-WORKDIR /usr/src/app
+RUN mkdir /app
 ADD . /app
 WORKDIR /app
 RUN npm install

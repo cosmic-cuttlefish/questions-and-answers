@@ -61,3 +61,5 @@ lib/
 
 # next.js build output
 .next
+SDC_Greenfield_Ubuntu.pem
+docker-compose.yml

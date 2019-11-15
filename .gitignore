@@ -63,3 +63,4 @@ lib/
 .next
 SDC_Greenfield_Ubuntu.pem
 docker-compose.yml
+package-lock.json

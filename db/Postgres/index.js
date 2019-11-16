@@ -1,10 +1,9 @@
 const Pool = require("pg").Pool;
 const config = require("../../config.json");
 
-console.log(process.env);
 if (process.env.NODE_ENV === "docker") {
   config.env = config.docker;
-} else if (config.production !== undefined) {
+} else if (process.env.NODE_ENV === "production") {
   config.env = config.production;
 } else {
   config.env = config.development;

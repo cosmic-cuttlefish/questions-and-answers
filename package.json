@@ -8,8 +8,8 @@
     "perf-test": "artillery run artillery/loadTesting.yml",
     "db-load": "psql postgres -a -f ./db/Postgres/schema.sql && psql qanda -a -f ./db/Postgres/seedDB.sql",
     "docker-load": "pg_restore -C -d postgres /usr/src/app/1-questions_schema.sql",
-    "build-dev": "nodemon server/index.js --watch --mode development",
-    "build-prod": "nodemon server/index.js --watch --mode production",
+    "build-dev": "NODE_ENV=development nodemon server/index.js --watch",
+    "build-prod": "NODE_ENV=production nodemon server/index.js --watch",
     "build-test": "node server/index.js"
   },
   "repository": {

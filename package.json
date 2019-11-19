@@ -9,7 +9,7 @@
     "db-load": "psql postgres -a -f ./db/Postgres/schema.sql && psql qanda -a -f ./db/Postgres/seedDB.sql",
     "docker-load": "pg_restore -C -d postgres /usr/src/app/1-questions_schema.sql",
     "build-dev": "NODE_ENV=development nodemon server/index.js --watch",
-    "build-prod": "NODE_ENV=production nodemon server/index.js --watch",
+    "build-prod": "NODE_ENV=production PORT=3001 nodemon server/index.js --watch",
     "build-test": "node server/index.js"
   },
   "repository": {
@@ -32,6 +32,7 @@
     "fs": "0.0.1-security",
     "jest": "^24.9.0",
     "jest-cli": "^24.9.0",
+    "lru-cache": "^5.1.1",
     "mongodb": "^3.3.3",
     "mongoose": "^5.7.8",
     "nodemon": "^1.19.4",

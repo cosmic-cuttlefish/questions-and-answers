@@ -25,7 +25,3 @@ describe("practice test", () => {
       });
   });
 });
-
-// it("should return an empty array when no questions are found", () => {});
-
-// it("should return an array of photos", () => {});

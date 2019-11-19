@@ -8,6 +8,7 @@ if (process.env.NODE_ENV === "docker") {
 } else {
   config.env = config.development;
 }
+
 const pool = new Pool({
   user: config.env.PGUSER,
   host: config.env.PGHOST,

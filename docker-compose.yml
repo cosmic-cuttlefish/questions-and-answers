@@ -29,5 +29,11 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  # TODO: Load balancer
+  # nginx:
+  #   image: "nginx:latest"
+  #   container_name: "nginx"
+  #   volumes:
+  #     - ./data/nginx:/etc/nginx/conf.d
 volumes:
   sdc_questions:

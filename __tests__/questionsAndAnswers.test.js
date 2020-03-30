@@ -2,6 +2,20 @@ const frisby = require("frisby");
 const Joi = frisby.Joi;
 const { getQuestions } = require("../server/models/questionsModels.js");
 
+let server, agent;
+
+beforeEach(done => {
+  server = app.listen(4000, err => {
+    if (err) return done(err);
+    agent = request.agent(server); // since the application is already listening, it should use the allocated port
+    done();
+  });
+});
+
+afterEach(done => {
+  return server.close(done);
+});
+
 describe("practice test", () => {
   it("should get a list of questions from the database", async () => {
     const id = 1;

@@ -23,15 +23,15 @@ jobs:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       # checking if the bulding builds correctly
       - run:
-          name: webpack Build test
-          command: npm run build-test
+          name: server start
+          command: npm run start-test
 
       # run tests!
       - run:
           environment:
-            POSTGRES_USER: christianferdinand
-            POSTGRES_DB: qanda
-            POSTGRES_HOST: localhost
-            POSTGRES_PORT: 5432
+            PGUSER: christianferdinand
+            PGDATABASE: qanda
+            PGHOST: localhost
+            PGPORT: 5432
           name: Jest Test
           command: npm run test -- -u

@@ -30,6 +30,7 @@
     "express": "^4.17.1",
     "frisby": "^2.1.2",
     "fs": "0.0.1-security",
+    "jasmine-node": "^3.0.0",
     "jest": "^24.9.0",
     "jest-cli": "^24.9.0",
     "lru-cache": "^5.1.1",

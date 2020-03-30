@@ -20,6 +20,11 @@ jobs:
           paths:
             - ./node_modules
           key: dependency-cache-{{ checksum "package-lock.json" }}
+      # checking if the bulding builds correctly
+      - run:
+          name: server start
+          command: npm run start-test
+          background: true
       # run tests!
       - run:
           environment:

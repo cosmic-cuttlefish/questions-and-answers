@@ -1,6 +1,7 @@
 version: 2.1
 jobs:
   build:
+    working_directory: ~/questions-and-answers
     docker:
       - image: circleci/node:10.16.0
       - image: circleci/postgres:latest
@@ -26,6 +27,8 @@ jobs:
           command: npm run start-test
           background: true
       # run tests!
+      - run: echo 127.0.0.1 devhost | sudo tee -a /etc/hosts
+
       - run:
           environment:
             PGUSER: christianferdinand

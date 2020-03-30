@@ -17,7 +17,7 @@ describe("practice test", () => {
 
   it("should return a status of 200 when sending a request for questions with the correct format for the questions", () => {
     return frisby
-      .get("http://127.0.0.1:3000/qa/1/questions")
+      .get("http://localhost:3000/qa/1/questions")
       .expect("status", 200)
       .expect("jsonTypes", "rows.*", {
         id: Joi.number(),

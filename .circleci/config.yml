@@ -29,4 +29,4 @@ jobs:
             PGHOST: localhost
             PGPORT: 5432
           name: Jest Test
-          command: npm run test -- -u
+          command: npm run start-test && npm run test -- -u

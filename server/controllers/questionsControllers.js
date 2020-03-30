@@ -8,20 +8,23 @@ module.exports = {
   getQA: (req, res) => {
     getQuestions(req.params.id)
       .then(data => {
+        if (data.rowCount === 0) {
+          throw new Error("Invalid Question ID");
+        }
         let questionList = { rowCount: data.rowCount, rows: data.rows };
-        res.send(questionList).status(200);
+        res.status(200).send(questionList);
       })
       .catch(err => {
-        res.sendStatus(500);
         console.log(err);
+        res.status(500).send({ error: err.message });
       });
   },
   addQues: (req, res) => {
     addQuestion(req.params.product_id, req.body)
       .then(res.sendStatus(201))
       .catch(err => {
-        res.sendStatus(500);
         console.log(err);
+        res.sendStatus(500);
       });
   },
   updateQues: (req, res) => {

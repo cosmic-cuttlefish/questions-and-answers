@@ -8,7 +8,7 @@ module.exports = {
       )
       .catch(err => {
         console.log(err);
-        throw err;
+        return err;
       });
   },
   addAnswer: (questionId, newAnswer) => {
@@ -27,7 +27,7 @@ module.exports = {
       })
       .catch(err => {
         console.log(err);
-        throw err;
+        return err;
       });
   },
   updateAnswer: (answerId, url) => {
@@ -42,7 +42,7 @@ module.exports = {
       )
       .catch(err => {
         console.log(err);
-        throw err;
+        return err;
       });
   }
 };

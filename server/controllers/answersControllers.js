@@ -9,7 +9,7 @@ module.exports = {
     getAnswer(req.params.question_id)
       .then(data => {
         let answerList = { rowCount: data.rowCount, rows: data.rows };
-        res.send(answerList).status(200);
+        res.status(200).send(answerList);
       })
       .catch(err => {
         res.sendStatus(500);

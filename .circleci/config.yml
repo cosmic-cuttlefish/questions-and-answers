@@ -8,7 +8,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            dependency-cache-{{ checksum "package-lock.json" }}
+            dependency-cache-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
       - run:
           name: Install npm packages
@@ -17,7 +17,7 @@ jobs:
       - save_cache:
           paths:
             - ./node_modules
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Jest Test
           environment:

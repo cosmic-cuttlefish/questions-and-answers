@@ -173,7 +173,7 @@ module.exports = {
   // Whether to use watchman for file crawling
   // watchman: true,
 };
-if (NODE_ENV !== "test") {
+if (process.env.NODE_ENV !== "test") {
   process.env = Object.assign(process.env, {
     PGUSER: "christianferdinand",
     PGDATABASE: "qanda",

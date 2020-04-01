@@ -4,11 +4,6 @@ jobs:
     working_directory: ~/questions-and-answers
     docker:
       - image: circleci/node:10.16.0
-        environment:
-          PGUSER: christianferdinand
-          PGDATABASE: qanda
-          PGHOST: 3.134.181.210
-          PGPORT: 5432
     steps:
       - checkout
       - restore_cache:
@@ -27,4 +22,9 @@ jobs:
       # checking if the bulding builds correctly
       - run:
           name: Jest Test
+          environment:
+            PGUSER: christianferdinand
+            PGDATABASE: qanda
+            PGHOST: 3.134.181.210
+            PGPORT: 5432
           command: npm run test -- -u

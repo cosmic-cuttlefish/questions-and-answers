@@ -24,9 +24,9 @@ jobs:
       # checking if the bulding builds correctly
       - run:
           environment:
-            PGUSER: christianferdinand
-            PGDATABASE: qanda
-            PGHOST: 3.134.181.210
-            PGPORT: 5432
+            POSTGRES_USER: christianferdinand
+            POSTGRES_DATABASE: qanda
+            POSTGRES_HOST: 3.134.181.210
+            POSTGRES_PORT: 5432
           name: Jest Test
           command: npm run test -- -u

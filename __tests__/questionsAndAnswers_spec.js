@@ -1,13 +1,15 @@
 const frisby = require("frisby");
 const Joi = frisby.Joi;
 const app = require("express")();
+const routes = require("../server/routes/qandaRoutes.js");
 const { getQuestions } = require("../server/models/questionsModels.js");
-
+let server;
 beforeEach(done => {
   server = app.listen(4000, err => {
     if (err) return done(err); // since the application is already listening, it should use the allocated port
     done();
   });
+  app.use("/qa", routes);
 });
 
 afterEach(done => {
@@ -18,7 +20,6 @@ describe("practice test", () => {
   it("should get a list of questions from the database", async () => {
     const id = 1;
     const questionId = 5;
-    console.log(process.env.PGDATABASE);
     let output;
 
     await getQuestions(id).then(data => {

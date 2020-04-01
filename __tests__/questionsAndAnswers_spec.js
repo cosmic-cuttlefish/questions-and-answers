@@ -20,12 +20,14 @@ describe("practice test", () => {
   it("should get a list of questions from the database", async () => {
     const id = 1;
     const questionId = 5;
-    let output;
-    console.log(process.env);
-    await getQuestions(id).then(data => {
-      output = data.rows[0].id;
-    });
-    expect(output).toBe(questionId);
+
+    await getQuestions(id)
+      .then(data => {
+        output = data.rows[0].id;
+      })
+      .then(() => {
+        expect(output).toBe(questionId);
+      });
   });
 
   it("should return a status of 200 when sending a request for questions with the correct format for the questions", () => {

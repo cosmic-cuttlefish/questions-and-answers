@@ -10,7 +10,6 @@ jobs:
           keys:
             dependency-cache-{{ checksum "package-lock.json" }}
             # fallback to using the latest cache if no exact match is found
-
       - run:
           name: Install npm packages
           command: npm install
@@ -19,12 +18,11 @@ jobs:
           paths:
             - ./node_modules
           key: dependency-cache-{{ checksum "package-lock.json" }}
-      # checking if the bulding builds correctly
       - run:
           name: Jest Test
           environment:
             PGUSER: christianferdinand
             PGDATABASE: qanda
-            PGHOST: 3.134.181.210
+            PGHOST: 3.134.181.210 #TODO: Change to use a postgres image and build the db using a sample file
             PGPORT: 5432
           command: npm run test -- -u

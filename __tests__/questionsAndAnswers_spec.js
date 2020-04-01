@@ -18,7 +18,7 @@ describe("practice test", () => {
   it("should get a list of questions from the database", async () => {
     const id = 1;
     const questionId = 5;
-
+    console.log(process.env.PGDATABASE);
     let output;
 
     await getQuestions(id).then(data => {

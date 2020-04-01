@@ -23,17 +23,10 @@ jobs:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       # checking if the bulding builds correctly
       - run:
-          name: server start
-          command: npm run start-test
-          background: true
-      # run tests!
-      - run: echo 127.0.0.1 devhost | sudo tee -a /etc/hosts
-
-      - run:
           environment:
             PGUSER: christianferdinand
             PGDATABASE: qanda
-            PGHOST: localhost
+            PGHOST: 3.134.181.210
             PGPORT: 5432
           name: Jest Test
           command: npm run test -- -u

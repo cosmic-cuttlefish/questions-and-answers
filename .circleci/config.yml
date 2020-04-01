@@ -4,11 +4,11 @@ jobs:
     working_directory: ~/questions-and-answers
     docker:
       - image: circleci/node:10.16.0
-      environment:
-        PGUSER: christianferdinand
-        PGDATABASE: qanda
-        PGHOST: 3.134.181.210
-        PGPORT: 5432
+        environment:
+          PGUSER: christianferdinand
+          PGDATABASE: qanda
+          PGHOST: 3.134.181.210
+          PGPORT: 5432
     steps:
       - checkout
       - restore_cache:

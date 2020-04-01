@@ -173,9 +173,11 @@ module.exports = {
   // Whether to use watchman for file crawling
   // watchman: true,
 };
-process.env = Object.assign(process.env, {
-  PGUSER: "christianferdinand",
-  PGDATABASE: "qanda",
-  PGHOST: "localhost",
-  PGPORT: 5432
-});
+if (NODE_ENV !== "test") {
+  process.env = Object.assign(process.env, {
+    PGUSER: "christianferdinand",
+    PGDATABASE: "qanda",
+    PGHOST: "localhost",
+    PGPORT: 5432
+  });
+}

@@ -8,9 +8,9 @@
     "perf-test": "artillery run artillery/loadTesting.yml",
     "db-load": "psql postgres -a -f ./db/Postgres/schema.sql && psql qanda -a -f ./db/Postgres/seedDB.sql",
     "docker-load": "pg_restore -C -d postgres /usr/src/app/1-questions_schema.sql",
-    "build-dev": "NODE_ENV=development nodemon server/index.js --watch",
-    "build-prod": "NODE_ENV=production PORT=3001 nodemon server/index.js --watch",
-    "build-test": "node server/index.js"
+    "start-dev": "nodemon -r dotenv/config server/index.js --watch",
+    "start-prod": "NODE_ENV=production PORT=3001 node server/index.js",
+    "start-test": "node server/index.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "express": "^4.17.1",
     "frisby": "^2.1.2",
     "fs": "0.0.1-security",
+    "jasmine-node": "^3.0.0",
     "jest": "^24.9.0",
     "jest-cli": "^24.9.0",
     "lru-cache": "^5.1.1",

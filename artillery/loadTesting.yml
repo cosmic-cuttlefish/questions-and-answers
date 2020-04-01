@@ -13,7 +13,7 @@ config:
     questionid:
       - "5"
     answerid:
-      - "3522866"
+      - ""
 scenarios:
   - name: "Get Questions"
     flow:
@@ -39,7 +39,7 @@ scenarios:
   - name: "Add Answer"
     flow:
       - post:
-          url: "/qa/{{ answerid }}/answers"
+          url: "/qa/{{ questionid }}/answers"
           json:
             body: "Is this api working?"
             name: "ApiGuy"

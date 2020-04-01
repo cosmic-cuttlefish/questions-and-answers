@@ -1,19 +1,10 @@
 const Pool = require("pg").Pool;
-const config = require("../../config.json");
-
-if (process.env.NODE_ENV === "docker") {
-  config.env = config.docker;
-} else if (process.env.NODE_ENV === "production") {
-  config.env = config.production;
-} else {
-  config.env = config.development;
-}
 
 const pool = new Pool({
-  user: config.env.PGUSER,
-  host: config.env.PGHOST,
-  database: config.env.PGDATABASE,
-  port: config.env.PGPORT
+  user: process.env.PGUSER,
+  host: process.env.PGHOST,
+  database: process.env.PGDATABASE,
+  port: process.env.PGPORT
 });
 
 pool.on("error", (err, client) => {

@@ -4,8 +4,11 @@ jobs:
     working_directory: ~/questions-and-answers
     docker:
       - image: circleci/node:10.16.0
-      - image: circleci/postgres:latest
-
+      environment:
+        PGUSER: christianferdinand
+        PGDATABASE: qanda
+        PGHOST: 3.134.181.210
+        PGPORT: 5432
     steps:
       - checkout
       - restore_cache:
@@ -23,10 +26,5 @@ jobs:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       # checking if the bulding builds correctly
       - run:
-          environment:
-            POSTGRES_USER: christianferdinand
-            POSTGRES_DATABASE: qanda
-            POSTGRES_HOST: 3.134.181.210
-            POSTGRES_PORT: 5432
           name: Jest Test
           command: npm run test -- -u

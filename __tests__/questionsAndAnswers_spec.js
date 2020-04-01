@@ -21,7 +21,7 @@ describe("practice test", () => {
     const id = 1;
     const questionId = 5;
     let output;
-
+    console.log(process.env);
     await getQuestions(id).then(data => {
       output = data.rows[0].id;
     });

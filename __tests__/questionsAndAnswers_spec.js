@@ -1,6 +1,18 @@
 const frisby = require("frisby");
 const Joi = frisby.Joi;
+const app = require("express")();
 const { getQuestions } = require("../server/models/questionsModels.js");
+
+beforeEach(done => {
+  server = app.listen(4000, err => {
+    if (err) return done(err); // since the application is already listening, it should use the allocated port
+    done();
+  });
+});
+
+afterEach(done => {
+  return server.close(done);
+});
 
 describe("practice test", () => {
   it("should get a list of questions from the database", async () => {
@@ -17,7 +29,7 @@ describe("practice test", () => {
 
   it("should return a status of 200 when sending a request for questions with the correct format for the questions", () => {
     return frisby
-      .get("http://localhost:3000/qa/1/questions")
+      .get("http://localhost:4000/qa/1/questions")
       .expect("status", 200)
       .expect("jsonTypes", "rows.*", {
         id: Joi.number(),

@@ -1,0 +1,45 @@
+version: "3"
+services:
+  db:
+    image: "postgres:latest"
+    container_name: "sdc_postgres"
+    environment:
+      DATABASE_URL: postgres://christianferdinand@db:5432/qanda
+      POSTGRES_USER: christianferdinand
+      POSTGRES_DB: qanda
+      POSTGRES_HOST: "postgresql"
+    ports:
+      - "5432:5432"
+    volumes:
+      - sdc_questions:/var/lib/postgresql/data
+      - ./lib/pgdump:/docker-entrypoint-initdb.d
+  web_1:
+    build: .
+    depends_on:
+      - "db"
+    links:
+      - "db"
+    environment:
+      PGUSER: christianferdinand
+      PGHOST: db
+      PGDATABASE: qanda
+      PGPORT: 5432
+    restart: on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  # Load balancer
+  nginx:
+    build: ./loadbalancer/prod
+    container_name: "nginx"
+    tty: true
+    links:
+      - web_1
+    volumes:
+      - ./loadbalancer/prod/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8080:8080"
+volumes:
+  sdc_questions:

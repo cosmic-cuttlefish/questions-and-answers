@@ -9,7 +9,7 @@
     "db-load": "psql postgres -a -f ./db/Postgres/schema.sql && psql qanda -a -f ./db/Postgres/seedDB.sql",
     "docker-load": "pg_restore -C -d postgres /usr/src/app/1-questions_schema.sql",
     "start-dev": "nodemon -r dotenv/config server/index.js --watch",
-    "start-prod": "NODE_ENV=production PORT=3001 node server/index.js",
+    "start-prod": "node -r dotenv/config server/index.js",
     "start-test": "node server/index.js"
   },
   "repository": {

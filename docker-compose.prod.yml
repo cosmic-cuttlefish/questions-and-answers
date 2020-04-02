@@ -30,51 +30,15 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-  web_2:
-    build: .
-    depends_on:
-      - "db"
-    links:
-      - "db"
-    environment:
-      PGUSER: christianferdinand
-      PGHOST: db
-      PGDATABASE: qanda
-      PGPORT: 5432
-    restart: on-failure
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-  web_3:
-    build: .
-    depends_on:
-      - "db"
-    links:
-      - "db"
-    environment:
-      PGUSER: christianferdinand
-      PGHOST: db
-      PGDATABASE: qanda
-      PGPORT: 5432
-    restart: on-failure
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-  # TODO: Load balancer
+  # Load balancer
   nginx:
-    build: ./loadbalancer/dev
+    build: ./loadbalancer/prod
     container_name: "nginx"
     tty: true
     links:
       - web_1
-      - web_2
-      - web_3
     volumes:
-      - ./loadbalancer/dev/nginx.conf:/etc/nginx/nginx.conf
+      - ./loadbalancer/prod/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - "8080:8080"
 volumes:

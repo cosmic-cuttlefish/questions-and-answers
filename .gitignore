@@ -58,6 +58,8 @@ typings/
 .env
 config.json
 lib/
+loadbalancer/prod
+loaderio/
 
 # next.js build output
 .next

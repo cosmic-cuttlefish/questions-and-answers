@@ -10,4 +10,9 @@ app.use(bodyparser.json());
 
 app.use("/qa", routes);
 
+app.get("/loaderio*", (req, res) => {
+  let file = req.path.substr(1);
+  res.status(200).sendFile(__dirname + `/loaderio/${file}.txt`);
+});
+
 app.listen(port, () => console.log(`App is listening on port ${port}!`));
